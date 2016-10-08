@@ -5,10 +5,13 @@ class IncidentXMLWriter:
   def __init__(self, item_arr):
     self.doc = Document()
     way = self.createNode("Waypoint")
+    # way = self.doc.createTextNode("Waypoint")
     for item in item_arr:
       cata = self.createNode(item, way)
       active = self.createNode("attributes",cata,withAttribs = {'attributeKey':"isactive"})
       bValue = self.createNode("bValue", active)
+      true_val = self.doc.createTextNode("True")
+      bValue.appendChild(true_val)
 
   def createNode(self, nodeName, parentNode = '', withAttribs = {}):
     node = self.doc.createElement(nodeName)

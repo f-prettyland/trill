@@ -35,6 +35,10 @@ def identify_str(to_parse, catagories):
 
 def main(results):
   catagories = loadWords(results.input_folder + "/" + results.lang + "/"+CATAGORIES)
+  for catagory in catagories.keys():
+    print(catagory)
+    print("     ", catagories[catagory])
+  
   to_parse = ""
   if results.input:
     to_parse = results.input
@@ -44,6 +48,7 @@ def main(results):
   print("\nidentifying ", to_parse)
   print("\nGot these:")
   id_catagories = identify_str(to_parse, catagories)
+  print(id_catagories)
 
   incident = IncidentXMLWriter(id_catagories)
   incident.printXML()
