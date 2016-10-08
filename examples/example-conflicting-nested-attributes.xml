@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Waypoint xmlns="http://www.smartconservationsoftware.org/xml/1.0/independentincident" id="4" x="11.609474842826888" y="-0.3663339834505755" dateTime="2016-10-08T16:25:49.000+01:00">
+    <observations categoryKey="humanactivity.">
+        <attributes attributeKey="threat">
+            <itemKey>biologicalresourceuse.huntingcollectingterrestrialanimals.</itemKey>
+        </attributes>
+    </observations>
+    <observations categoryKey="humanactivity.weaponsequipment.">
+        <attributes attributeKey="threat">
+            <itemKey>agricultureaquaculture.annualperennialnontimbercrops.</itemKey>
+        </attributes>
+        <attributes attributeKey="numberofweaponsequipment">
+            <dValue>2.0</dValue>
+        </attributes>
+    </observations>
+</Waypoint>

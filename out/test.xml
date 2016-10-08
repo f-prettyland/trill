@@ -1,7 +1,12 @@
 <?xml version="1.0" ?>
 <Waypoint dateTime="2016-10-07T20:47:56.000-04:00" id="1" x="45.34" xmlns="http://www.smartconservationsoftware.org/xml/1.0/independentincident" y="34.56">
-  <comment>AUTO-GENERATED FROM SMS:&quot;trap&quot;</comment>
-  <observations categoryKey="humanactivity.weaponsequipment.trap.">
+  <comment>AUTO-GENERATED FROM SMS:&quot;there is a trap and a lion&quot;</comment>
+  <observations categoryKey="humanactivity.weaponsequipment.trap">
+    <attributes attributeKey="isactive">
+      <bValue>true</bValue>
+    </attributes>
+  </observations>
+  <observations categoryKey="animals">
     <attributes attributeKey="isactive">
       <bValue>true</bValue>
     </attributes>
