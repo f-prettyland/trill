@@ -1,4 +1,10 @@
 #!/usr/bin/env python
+'''
+Example call:
+  curl -d "phone=bar&sms=baz" http://localhost:88
+
+Run this with "sudo python3 http_server.py"
+'''
 import urllib.parse
 from message_generator import MessageGenerator
 from http.server import BaseHTTPRequestHandler, HTTPServer
