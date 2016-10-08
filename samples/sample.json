@@ -1,0 +1,137 @@
+{
+  "humanactivity.animals.carcass": [
+    {
+      "answers": [
+        {
+          "answer_number": 1,
+          "answer_text": "Old Age",
+          "smart_value_key": "natural.oldage"
+        },
+        {
+          "answer_number": 2,
+          "answer_text": "Poison",
+          "smart_value_key": "illegal.poison"
+        },
+        {
+          "answer_number": 3,
+          "answer_text": "Gunshot",
+          "smart_value_key": "illegal.gunshot"
+        },
+        {
+          "answer_number": 4,
+          "answer_text": "Traditional Weapon",
+          "smart_value_key": "illegal.traditionalweapons"
+        },
+        {
+          "answer_number": 5,
+          "answer_text": "Drowned",
+          "smart_value_key": "natural.accident.drowned"
+        },
+        {
+          "answer_number": 6,
+          "answer_text": "Other",
+          "smart_value_key": "other"
+        }
+      ],
+      "question": "How did the animal die?",
+      "smart_key": "humanactivity.carcas.causeofdeath",
+      "smart_key_type": "itemKey"
+    },
+    {
+      "answers": [
+        {
+          "answer_number": 1,
+          "answer_text": "Black Rhino",
+          "smart_value_key": "dicerosbicornis_rl6557"
+        },
+        {
+          "answer_number": 2,
+          "answer_text": "White Rhino",
+          "smart_value_key": "ceratotheriumsimum_rl4185"
+        },
+        {
+          "answer_number": 3,
+          "answer_text": "Not Yet",
+          "smart_value_key": "null"
+        }
+      ],
+      "question": "What animal is dead",
+      "smart_key": "animals.liveanimals.species",
+      "smart_key_type": "itemKey"
+    }
+  ],
+  "humanactivity.weaponsequipment.trap": [
+    {
+      "answers": [
+        {
+          "answer_number": 1,
+          "answer_text": "Pit Trap",
+          "smart_value_key": "pittrap"
+        },
+        {
+          "answer_number": 2,
+          "answer_text": "Wire Trap",
+          "smart_value_key": "wiresnare"
+        },
+        {
+          "answer_number": 3,
+          "answer_text": "Jaw Trap",
+          "smart_value_key": "jawtrap"
+        },
+        {
+          "answer_number": 4,
+          "answer_text": "Other",
+          "smart_value_key": "other"
+        }
+      ],
+      "question": "What type of trap?",
+      "smart_key": "humanactivity.weaponsequipment.trap.typeoftrap",
+      "smart_key_type": "itemKey"
+    },
+    {
+      "answers": [],
+      "question": "Enter the number of traps?",
+      "smart_key": "humanactivity.weaponsequipment.trap.numberofweaponsequipment",
+      "smart_key_type": "dValue"
+    },
+    {
+      "answers": [
+        {
+          "answer_number": 1,
+          "answer_text": "Yes",
+          "smart_value_key": "true"
+        },
+        {
+          "answer_number": 2,
+          "answer_text": "Not Yet",
+          "smart_value_key": "false"
+        }
+      ],
+      "question": "Is the trap active?",
+      "smart_key": "humanactivity.weaponsequipment.trap.isactive",
+      "smart_key_type": "bValue"
+    },
+    {
+      "answers": [
+        {
+          "answer_number": 1,
+          "answer_text": "Black Rhino",
+          "smart_value_key": "dicerosbicornis_rl6557"
+        },
+        {
+          "answer_number": 2,
+          "answer_text": "White Rhino",
+          "smart_value_key": "ceratotheriumsimum_rl4185"
+        },
+        {
+          "answer_number": 3,
+          "answer_text": "Not Yet",
+          "smart_value_key": "null"
+        }
+      ],
+      "question": "Are any animals caught in the trap?",
+      "smart_key": "animals.liveanimals.species",
+      "smart_key_type": "itemKey"
+    }
+  ]
+}
