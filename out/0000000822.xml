@@ -11,4 +11,44 @@
       <bValue>true</bValue>
     </attributes>
   </observations>
+  <observations categoryKey="humanactivity.weaponsequipment.trap">
+    <attributes attributeKey="typeoftrap">
+      <itemKey>pittrap</itemKey>
+    </attributes>
+  </observations>
+  <observations categoryKey="humanactivity.weaponsequipment.trap">
+    <attributes attributeKey="numberofweaponsequipment">
+      <dValue>1</dValue>
+    </attributes>
+  </observations>
+  <observations categoryKey="humanactivity.weaponsequipment.trap">
+    <attributes attributeKey="isactive">
+      <bValue>true</bValue>
+    </attributes>
+  </observations>
+  <observations categoryKey="animals.liveanimals">
+    <attributes attributeKey="species">
+      <itemKey>dicerosbicornis_rl6557</itemKey>
+    </attributes>
+  </observations>
+  <observations categoryKey="humanactivity.weaponsequipment.trap">
+    <attributes attributeKey="typeoftrap">
+      <itemKey>pittrap</itemKey>
+    </attributes>
+  </observations>
+  <observations categoryKey="humanactivity.weaponsequipment.trap">
+    <attributes attributeKey="numberofweaponsequipment">
+      <dValue>1</dValue>
+    </attributes>
+  </observations>
+  <observations categoryKey="humanactivity.weaponsequipment.trap">
+    <attributes attributeKey="isactive">
+      <bValue>true</bValue>
+    </attributes>
+  </observations>
+  <observations categoryKey="animals.liveanimals">
+    <attributes attributeKey="species">
+      <itemKey>dicerosbicornis_rl6557</itemKey>
+    </attributes>
+  </observations>
 </Waypoint>

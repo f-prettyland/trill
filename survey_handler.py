@@ -85,13 +85,15 @@ class SurveyHandler:
   def next_q_from_catagory(self, catagory, person):
     question = None
     try:
+      print("cata ", catagory)
+      print("curr q ", person.current_question)
       question = self.json_data[catagory][person.current_question][QUESTION]
     except IndexError as err:
       try:
         # get the next catagory
         person.current_question = 0
         question = self.next_q_from_catagory(person.catagories_matched.pop(),
-                            person.current_question)
+                            person)
       except IndexError as err:
         question = self.last_q(person)
     except KeyError as err:
