@@ -57,8 +57,8 @@ class MessageGenerator:
 
     return Person(number, id_catagories, datetime.now(), incident_xml)
 
-  def message_request(self, phone_num, sms_body):
-    return "You sent me "+ sms_body[0]
+  def message_request(self, phone_num, sms_body, time):
+    return "From: " + phone_num[0] + "  You sent me "+ sms_body[0] + "  at  " + time[0]
 
 # def main(results):
 #   global svr_handler

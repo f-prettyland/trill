@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 '''
 Example call:
-  curl -d "phone=bar&sms=baz" http://localhost:88
+  curl -d "phone=0000000822&sms=Hello world&time=2016-10-07T20:47:56.000-04:00" http://localhost:88
 
 Run this with "sudo python3 http_server.py"
 '''
@@ -32,7 +32,7 @@ class S(BaseHTTPRequestHandler):
     phone_and_sms = post_str.split("&")
     qs = urllib.parse.parse_qs(post_str)
     self._set_headers()
-    massage = msg_gen.message_request(qs['phone'],qs['sms'])
+    massage = msg_gen.message_request(qs['phone'],qs['sms'],qs['time'])
     message = "\{\"body\":\""+ massage + "\"\}"
     self.wfile.write(bytes(message+"\n", "utf8"))
 
