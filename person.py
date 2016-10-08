@@ -14,7 +14,7 @@ class Person:
     self.phonenumber = phonenumber
     self.catagories_matched = catagories_matched
     if len(catagories_matched) >= 1 :
-      self.current_catagory = catagories_matched[0]
+      self.current_catagory = catagories_matched.pop()
     self.current_question = 0
     self.last_time_of_contact = date_time
     self.xml = xml
