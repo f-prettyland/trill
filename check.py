@@ -54,7 +54,11 @@ def main(results):
   id_catagories = identify_str(to_parse, catagories)
   print(id_catagories)
 
-  incident = IncidentXMLWriter(to_parse, id_catagories)
+  incident = IncidentXMLWriter(to_parse,
+                              id_catagories,
+                              "45.34",
+                              "34.56",
+                              "2016-10-07T20:47:56.000-04:00")
   incident.printXML()
   incident.writeXML(output_loc)
 

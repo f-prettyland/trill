@@ -2,20 +2,25 @@ from xml.dom.minidom import Document
 from xml.sax.saxutils import unescape
 WYPNT_ATTR = {
   'xmlns':"http://www.smartconservationsoftware.org/xml/1.0/independentincident",
-  'id':"1",
-  'x':"45.34",
-  'y':"34.56",
-  'dateTime':"2016-10-07T20:47:56.000-04:00"
+  'id':"1"
 }
 
 class IncidentXMLWriter:
-  def __init__(self, sms, item_arr):
+  def __init__(self, sms, item_arr, in_x, in_y, date_time):
     self.doc = Document()
-    # CREATE WAYPOINT AND COMMENTS
+    # CREATE WAYPOINT
+    extra_deets = {
+      'x':in_x,
+      'y':in_y,
+      'dateTime':date_time
+    }
+    way_p_full_attr = dict(WYPNT_ATTR)
+    way_p_full_attr.update(extra_deets)
     way_node = self.createNode("Waypoint",
-                          withAttribs = WYPNT_ATTR)
+                          withAttribs = way_p_full_attr)
+    # CREATE COMMENTS
     comment_node = self.createNode("comment", way_node)
-    true_val = self.doc.createTextNode("AUTO-GENERATED FROM SMS: " + sms)
+    true_val = self.doc.createTextNode("AUTO-GENERATED FROM SMS:\"" + sms +"\"")
     comment_node.appendChild(true_val)
 
     # FIGURE OUT ARRAY INPUTTED
