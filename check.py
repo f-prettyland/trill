@@ -34,11 +34,15 @@ def identify_str(to_parse, catagories):
   return id_catagories
 
 def main(results):
-  catagories = loadWords(results.input_folder + "/" + results.lang + "/"+CATAGORIES)
+  input_loc = os.path.join(__location__,results.input_folder + "/" + \
+                          results.lang + "/"+CATAGORIES)
+  output_loc = os.path.join(__location__,results.output)
+
+  catagories = loadWords(input_loc)
   for catagory in catagories.keys():
     print(catagory)
     print("     ", catagories[catagory])
-  
+
   to_parse = ""
   if results.input:
     to_parse = results.input
@@ -50,8 +54,9 @@ def main(results):
   id_catagories = identify_str(to_parse, catagories)
   print(id_catagories)
 
-  incident = IncidentXMLWriter(id_catagories)
+  incident = IncidentXMLWriter(to_parse, id_catagories)
   incident.printXML()
+  incident.writeXML(output_loc)
 
 if __name__ == "__main__":
   prsr = argparse.ArgumentParser(description='Identify what someone\'s chatting about')
@@ -62,8 +67,11 @@ if __name__ == "__main__":
                       help='Two letter language representation')
   prsr.add_argument('-i', dest='input',
                       help='A string to parse')
+  prsr.add_argument('-o', dest='output',
+                      help='Where output xml goes to')
 
   prsr.set_defaults(input_folder="input")
   prsr.set_defaults(lang="en")
+  prsr.set_defaults(output="out/test.xml")
   results = prsr.parse_args()
   main(results)
