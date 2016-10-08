@@ -1,0 +1,38 @@
+{
+  "humanactivity.weaponsequipment.trap": [
+    {
+      "question": "What type of trap?",
+      "answers": [
+        { "answer_number": 1, "answer_text": "Pit Trap", "smart_value_key": "pittrap" },
+        { "answer_number": 2, "answer_text": "Wire Snare", "smart_value_key": "wiresnare" },
+        { "answer_number": 3, "answer_text": "Jaw Trap", "smart_value_key": "jawtrap" },
+        { "answer_number": 4, "answer_text": "Other", "smart_value_key": "other" }
+      ],
+      "smart_key": "humanactivity.weaponsequipment.trap.typeoftrap"
+    },
+    {
+      "question": "Please enter the number of traps",
+      "answers": [
+      ],
+      "smart_key": "humanactivity.weaponsequipment.trap.numberofweaponsequipment"
+    },
+    {
+      "question": "Is the trap active?",
+      "answers": [
+        { "answer_number": 1, "answer_text": "Yes", "smart_value_key": "true" },
+        { "answer_number": 2, "answer_text": "No", "smart_value_key": "false" }
+      ],
+      "smart_key": "humanactivity.weaponsequipment.trap.isactive"
+    },
+    {
+      "question": "Are any animals caught in the trap?",
+      "answers": [
+        { "answer_number": 1, "answer_text": "Black Rhino", "smart_value_key": "dicerosbicornis_rl6557" },
+        { "answer_number": 2, "answer_text": "White Rhino", "smart_value_key": "ceratotheriumsimum_rl4185" },
+        { "answer_number": 3, "answer_text": "Other", "smart_value_key": "other" },
+        { "answer_number": 4, "answer_text": "Not Yet", "smart_value_key": "null" }
+      ],
+      "smart_key": "animals.liveanimals.species"
+    }
+  ]
+}
