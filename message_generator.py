@@ -30,50 +30,49 @@ class MessageGenerator:
     json_data = json.load(data_file)
     self.svr_handler = SurveyHandler(input_loc, json_data)
 
-  def check_for(checkee, words):
-    regex = re.compile('|'.join(r'(?:|^)'+re.escape(x)+r'(?:|$)'
-                        for x in words))
-    return re.search( regex, checkee)
-
-  def get_initial_text_catagories(to_parse):
+  def get_initial_text_catagories(self, to_parse):
     id_catagories = []
     for catagory in self.svr_handler.catagories.keys():
       if check_for(to_parse, self.svr_handler.catagories[catagory]):
         id_catagories.append(catagory)
     return id_catagories
 
-  def make_person(number, to_parse, time):
-    id_catagories = get_initial_text_catagories(to_parse)
+  def make_person(self, number, to_parse, time):
+    id_catagories = self.get_initial_text_catagories(to_parse)
     debug_print("\nIdentifying: \n{0}\nGot these:\n{1}\n"
                 .format(to_parse, id_catagories))
     incident_xml = IncidentXMLWriter(to_parse,
                               id_catagories,
                               time)
-    incident_xml.printXML()
-    return Person(number, id_catagories, datetime.now(), incident_xml)
-
-  def next_question(person, to_parse, time):
-    debug_print("Hai")
-
-  def person_response(person, to_parse, time):
-    id_catagories = get_initial_text_catagories(to_parse)
-    debug_print("\nIdentifying: \n{0}".format(to_parse))
-
+    incident_xml.print_XML()
+    question_catagories = self.svr_handler.getQuestionCatagories(id_catagories)
+    return Person(number, question_catagories, datetime.now(), incident_xml)
 
   def message_request(self, phone_nums, sms_bodys, times):
     phone_num = phone_nums[0]
     sms_body = sms_bodys[0]
     time = times[0]
-    if phone_num in people.keys():
-      person_response(people[phone_num], sms_body, time)
+    response = None
+
+    if phone_num in self.people.keys():
+      response = self.svr_handler.mark_get_next_question(self.people[phone_num],
+                                                          sms_body,
+                                                          time)
     else:
-      make_person(phone_num, sms_body, time)
+      self.people[phone_num] = self.make_person(phone_num, sms_body, time)
+      response = "From: " + phone_num + "  You sent me "+ sms_body + \
+                  "  at  " + time
 
-    return "From: " + phone_num + "  You sent me "+ sms_body + "  at  " + time
+    return response
 
-  def debug_print(string):
-    if debug:
-      print(string)
+def debug_print(string):
+  if debug:
+    print(string)
+
+def check_for(checkee, words):
+  regex = re.compile('|'.join(r'(?:|^)'+re.escape(x)+r'(?:|$)'
+                      for x in words))
+  return re.search( regex, checkee)
 
 # def main(results):
 #   global svr_handler

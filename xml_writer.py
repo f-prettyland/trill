@@ -18,20 +18,20 @@ class IncidentXMLWriter:
     }
     way_p_full_attr = dict(WYPNT_ATTR)
     way_p_full_attr.update(extra_deets)
-    self.way_node = self.createNode("Waypoint",
+    self.way_node = self.create_node("Waypoint",
                           attribs = way_p_full_attr)
     # CREATE COMMENTS
-    comment_node = self.createNode("comment", self.way_node)
-    true_val = self.doc.createTextNode("AUTO-GENERATED FROM SMS:\"" + sms +"\"")
-    comment_node.appendChild(true_val)
+    comment_node = self.create_node("comment", self.way_node)
+    trueVal = self.doc.createTextNode("AUTO-GENERATED FROM SMS:\"" + sms +"\"")
+    comment_node.appendChild(trueVal)
 
     # FIGURE OUT ARRAY INPUTTED
     for item in bool_arr_to_true:
-      self.createValuedNode(item+"isactive",
+      self.create_valued_node(item+"isactive",
                       "true",
                       "bValue")
 
-  def createNode(self, node_name, parent_node = '', attribs = {}):
+  def create_node(self, node_name, parent_node = '', attribs = {}):
     node = self.doc.createElement(node_name)
     if parent_node == '':
       createdNode = self.doc.appendChild(node)
@@ -40,36 +40,36 @@ class IncidentXMLWriter:
 
     if attribs != {}:
       for key, value in attribs.items():
-        self.setAttribute(createdNode, key, value)
+        self.set_attribute(createdNode, key, value)
 
     return createdNode
 
-  def createValuedNode(self, node_name, node_value, value_type):
-    # get the final thing as the attribute_key
+  def create_valued_node(self, node_name, node_value, value_type):
+    # get the final thing as the attributeKey
     # eg.ge.example => "eg.ge." and "example"
-    split_up = node_name.rsplit('.',1)
-    attribute_key = split_up[1]
-    category_key = split_up[0]
+    splitUp = node_name.rsplit('.',1)
+    attributeKey = splitUp[1]
+    categoryKey = splitUp[0]
 
-    observation = self.createNode("observations", self.way_node,
-                          attribs={"categoryKey":category_key})
-    active = self.createNode("attributes",observation,
-                            attribs = {'attributeKey':attribute_key})
-    type_val = self.createNode(value_type, active)
-    true_val = self.doc.createTextNode(node_value)
-    type_val.appendChild(true_val)
+    observation = self.create_node("observations", self.way_node,
+                          attribs={"categoryKey":categoryKey})
+    active = self.create_node("attributes",observation,
+                            attribs = {'attributeKey':attributeKey})
+    typeVal = self.create_node(value_type, active)
+    trueVal = self.doc.createTextNode(node_value)
+    typeVal.appendChild(trueVal)
     return observation
 
-  def setLocation(self, x_loc, y_loc):
+  def set_location(self, x_loc, y_loc):
     way_node.setAttribute("x", x_loc)
     way_node.setAttribute("y", y_loc)
 
-  def setAttribute(self, node, key, value):
+  def set_attribute(self, node, key, value):
     node.setAttribute(key, value)
 
-  def printXML(self):
+  def print_XML(self):
     print (self.doc.toprettyxml(indent="  "))
 
-  def writeXML(self, out_file):
+  def write_XML(self, out_file):
     f = open(out_file, 'w')
     f.write(self.doc.toprettyxml(indent="  "))

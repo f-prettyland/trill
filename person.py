@@ -26,6 +26,6 @@ class Person:
     if self.xml:
       # WRITE A LOG
       print("WRITE A LOG")
-      self.xml.writeXML(FILE_LOC+self.phonenumber+FILE_TYPE)
+      self.xml.write_XML(FILE_LOC+self.phonenumber+FILE_TYPE)
     else:
       raise Exception('No XML')
