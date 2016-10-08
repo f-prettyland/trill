@@ -6,7 +6,7 @@ WYPNT_ATTR = {
 }
 
 class IncidentXMLWriter:
-  def __init__(self, sms, item_arr, in_x, in_y, date_time):
+  def __init__(self, sms, bool_arr_to_true, in_x, in_y, date_time):
     self.doc = Document()
     # CREATE WAYPOINT
     extra_deets = {
@@ -17,34 +17,47 @@ class IncidentXMLWriter:
     way_p_full_attr = dict(WYPNT_ATTR)
     way_p_full_attr.update(extra_deets)
     way_node = self.createNode("Waypoint",
-                          withAttribs = way_p_full_attr)
+                          attribs = way_p_full_attr)
     # CREATE COMMENTS
     comment_node = self.createNode("comment", way_node)
     true_val = self.doc.createTextNode("AUTO-GENERATED FROM SMS:\"" + sms +"\"")
     comment_node.appendChild(true_val)
 
     # FIGURE OUT ARRAY INPUTTED
-    for item in item_arr:
+    for item in bool_arr_to_true:
       cata = self.createNode("observations", way_node,
-                            withAttribs={"categoryKey":item})
+                            attribs={"categoryKey":item})
       active = self.createNode("attributes",cata,
-                              withAttribs = {'attributeKey':"isactive"})
+                              attribs = {'attributeKey':"isactive"})
       bValue = self.createNode("bValue", active)
       true_val = self.doc.createTextNode("true")
       bValue.appendChild(true_val)
 
-  def createNode(self, nodeName, parentNode = '', withAttribs = {}):
-    node = self.doc.createElement(nodeName)
-    if parentNode == '':
+  def createNode(self, node_name, parent_node = '', attribs = {}):
+    node = self.doc.createElement(node_name)
+    if parent_node == '':
       createdNode = self.doc.appendChild(node)
     else:
-      createdNode = parentNode.appendChild(node)
+      createdNode = parent_node.appendChild(node)
 
-    if withAttribs != {}:
-      for key, value in withAttribs.items():
+    if attribs != {}:
+      for key, value in attribs.items():
         self.setAttribute(createdNode, key, value)
 
     return createdNode
+
+  # def createValuedNode(self, node_name, nodeValue):
+  #   node = self.doc.createElement(node_name)
+  #   if parent_node == '':
+  #     createdNode = self.doc.appendChild(node)
+  #   else:
+  #     createdNode = parent_node.appendChild(node)
+  #
+  #   if attribs != {}:
+  #     for key, value in attribs.items():
+  #       self.setAttribute(createdNode, key, value)
+  #
+  #   return createdNode
 
   def setAttribute(self, node, key, value):
     node.setAttribute(key, value)
