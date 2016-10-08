@@ -19,13 +19,9 @@ class Person:
     self.last_time_of_contact = date_time
     self.xml = xml
 
-  # def getNextQuestion():
-
-
   def generateXML(self):
     if self.xml:
-      # WRITE A LOG
-      print("WRITE A LOG")
+      # TODO WRITE A LOG
       self.xml.write_XML(FILE_LOC+self.phonenumber+FILE_TYPE)
     else:
       raise Exception('No XML')

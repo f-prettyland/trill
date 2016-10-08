@@ -60,9 +60,9 @@ class MessageGenerator:
                                                           time)
     else:
       self.people[phone_num] = self.make_person(phone_num, sms_body, time)
-      response = "From: " + phone_num + "  You sent me "+ sms_body + \
-                  "  at  " + time
-
+      response = self.svr_handler.mark_get_next_question(self.people[phone_num],
+                                                          None,
+                                                          time)
     return response
 
 def debug_print(string):

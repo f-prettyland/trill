@@ -31,17 +31,21 @@ class SurveyHandler:
   def getQuestionCatagories(self, matched_catagories):
     matched_question_cats = []
     for catagory in matched_catagories:
-      if catagory in self.json_data:
-        matched_question_cats.append(catagory)
+      trimmed_catagory = catagory
+      if catagory.endswith("."):
+        trimmed_catagory = catagory[:-1]
+      if trimmed_catagory in self.json_data:
+        matched_question_cats.append(trimmed_catagory)
     return matched_question_cats
 
   def mark_get_next_question(self, person, sms, time):
-    person.last_time_of_contact=time
-    poss_reask = self.mark_answer(sms, person)
-    if poss_reask:
-      return poss_reask
-    # next question
-    person.current_question+=1
+    if sms:
+      person.last_time_of_contact=time
+      poss_reask = self.mark_answer(sms, person)
+      if poss_reask:
+        return poss_reask
+      # next question
+      person.current_question+=1
     next_q = self.next_q_from_catagory(person.current_catagory, person)
     return next_q
 
@@ -89,10 +93,15 @@ class SurveyHandler:
         question = self.next_q_from_catagory(person.catagories_matched.pop(),
                             person.current_question)
       except IndexError as err:
-        question = self.json_data[last_elem][QUESTION]
+        question = self.last_q(person)
+    except KeyError as err:
+      question = self.last_q(person)
     # return the question found
     return question
 
+  def last_q(self, person):
+    person.generateXML()
+    return self.json_data[FINALE][0][QUESTION]
 
 def log_response(number, sms):
   with open(NONMATCH_RESP, "a") as responses_file:

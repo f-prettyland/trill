@@ -133,5 +133,13 @@
       "smart_key": "animals.liveanimals.species",
       "smart_key_type": "itemKey"
     }
+  ],
+  "end": [
+    {
+      "answers": [],
+      "question": "Thank you for participating",
+      "smart_key": "",
+      "smart_key_type": ""
+    }
   ]
 }
