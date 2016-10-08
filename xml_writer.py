@@ -8,12 +8,12 @@ WYPNT_ATTR = {
 class IncidentXMLWriter:
   way_node = None
 
-  def __init__(self, sms, bool_arr_to_true, in_x, in_y, date_time):
+  def __init__(self, sms, bool_arr_to_true, date_time):
     self.doc = Document()
     # CREATE WAYPOINT
     extra_deets = {
-      'x':in_x,
-      'y':in_y,
+      'x':0,
+      'y':0,
       'dateTime':date_time
     }
     way_p_full_attr = dict(WYPNT_ATTR)
@@ -58,8 +58,11 @@ class IncidentXMLWriter:
     type_val = self.createNode(value_type, active)
     true_val = self.doc.createTextNode(node_value)
     type_val.appendChild(true_val)
-
     return observation
+
+  def setLocation(self, x_loc, y_loc):
+    way_node.setAttribute("x", x_loc)
+    way_node.setAttribute("y", y_loc)
 
   def setAttribute(self, node, key, value):
     node.setAttribute(key, value)

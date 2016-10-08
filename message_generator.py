@@ -14,10 +14,11 @@ INPUT_FOLD="input"
 INPUT_LANG="en"
 CATAGORIES="catagories.csv"
 JAAAASON="temp.json"
-ASK_FOR_IN="Gimme a SMS\n"
+debug=True
 
 class MessageGenerator:
   svr_handler = None
+  people = {}
 
   def __init__(self):
     input_loc = os.path.join(__location__,INPUT_FOLD + "/" + \
@@ -41,24 +42,38 @@ class MessageGenerator:
         id_catagories.append(catagory)
     return id_catagories
 
-  def make_person(to_parse, number):
-    print("\nIdentifying: \n", to_parse)
-    print("\nGot these:")
+  def make_person(number, to_parse, time):
     id_catagories = get_initial_text_catagories(to_parse)
-    print(id_catagories)
-    print("\n")
-
+    debug_print("\nIdentifying: \n{0}\nGot these:\n{1}\n"
+                .format(to_parse, id_catagories))
     incident_xml = IncidentXMLWriter(to_parse,
                               id_catagories,
-                              "45.34",
-                              "34.56",
-                              "2016-10-07T20:47:56.000-04:00")
+                              time)
     incident_xml.printXML()
-
     return Person(number, id_catagories, datetime.now(), incident_xml)
 
-  def message_request(self, phone_num, sms_body, time):
-    return "From: " + phone_num[0] + "  You sent me "+ sms_body[0] + "  at  " + time[0]
+  def next_question(person, to_parse, time):
+    debug_print("Hai")
+
+  def person_response(person, to_parse, time):
+    id_catagories = get_initial_text_catagories(to_parse)
+    debug_print("\nIdentifying: \n{0}".format(to_parse))
+
+
+  def message_request(self, phone_nums, sms_bodys, times):
+    phone_num = phone_nums[0]
+    sms_body = sms_bodys[0]
+    time = times[0]
+    if phone_num in people.keys():
+      person_response(people[phone_num], sms_body, time)
+    else:
+      make_person(phone_num, sms_body, time)
+
+    return "From: " + phone_num + "  You sent me "+ sms_body + "  at  " + time
+
+  def debug_print(string):
+    if debug:
+      print(string)
 
 # def main(results):
 #   global svr_handler
