@@ -12,8 +12,8 @@ class IncidentXMLWriter:
     self.doc = Document()
     # CREATE WAYPOINT
     extra_deets = {
-      'x':0,
-      'y':0,
+      'x':'0',
+      'y':'0',
       'dateTime':date_time
     }
     way_p_full_attr = dict(WYPNT_ATTR)

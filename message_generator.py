@@ -51,7 +51,9 @@ class MessageGenerator:
   def message_request(self, phone_nums, sms_bodys, times):
     phone_num = phone_nums[0]
     sms_body = sms_bodys[0]
-    time = times[0]
+    # trim off apos
+    endline = re.compile(r'\'$')
+    time = endline.sub("",times[0])
     response = None
 
     if phone_num in self.people.keys():

@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<Waypoint dateTime="2016-10-07T20:47:56.000-04:00'" id="1" x="" xmlns="http://www.smartconservationsoftware.org/xml/1.0/independentincident" y="">
+<Waypoint dateTime="2016-10-07T20:47:56.000-04:00" id="1" x="0" xmlns="http://www.smartconservationsoftware.org/xml/1.0/independentincident" y="0">
   <comment>AUTO-GENERATED FROM SMS:&quot;Dead lion with trap&quot;</comment>
   <observations categoryKey="animals">
     <attributes attributeKey="isactive">
