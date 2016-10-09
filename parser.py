@@ -42,19 +42,10 @@ def post_to_trill():
     response = conn.getresponse()
     data = response.read()
     conn.close()
-    print(data)
-    # regexData = re.compile(r"^'b(.*})\\n")
-    cleanData = str(data).replace("\b'","")
-    print("sleeeeep")
-    #send_to_user(cleanData)
-    print(cleanData)
-    return(cleanData)
-
-
-
-
-
-
+    cleanData = data.decode("utf-8")
+    resp = twilio.twiml.Response()
+    resp.message(cleanData)
+    return str(resp)
 
 
 # Debug Echo Function
