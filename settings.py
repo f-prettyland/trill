@@ -30,7 +30,9 @@ debug=True
 
 def log_response(number, sms):
   with open(NONMATCH_RESP, "a") as responses_file:
-    responses_file.write("{0}, {1}, {2}".format(datetime.now().time(), number, sms))
+    responses_file.write("{0}, {1}, {2}\n".format(datetime.now().time(),
+                                                number,
+                                                sms))
 
 def debug_print(string):
   if debug:

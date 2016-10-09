@@ -96,6 +96,9 @@ class SurveyHandler:
     # if we found something, mark it
     if lon:
       self.mark_gps_answer(person, lon, lat, time)
+    return self.update_q(person)
+
+  def update_q(self,person):
     person.current_question+=1
     next_q = self.next_q_from_catagory(person)
     return next_q

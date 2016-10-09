@@ -79,10 +79,11 @@ class MessageGenerator:
     time = reg_endline.sub("",times[0])
     response = None
     if phone_num in self.people.keys():
-      response = self.svr_handler.mark_gps_answer(self.people[phone_num],
-                                                  lon,
-                                                  lat,
-                                                  time)
+      self.svr_handler.mark_gps_answer(self.people[phone_num],
+                                        lon,
+                                        lat,
+                                        time)
+      response = self.svr_handler.update_q(self.people[phone_num])
       if self.people[phone_num].finished:
         del self.people[phone_num]
 

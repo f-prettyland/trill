@@ -6,6 +6,7 @@ Example call:
 Run this with "sudo python3 http_server.py"
 '''
 import urllib.parse
+from datetime import datetime
 from message_generator import MessageGenerator
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
@@ -30,13 +31,13 @@ class S(BaseHTTPRequestHandler):
     post_str = str(post_data).replace("b\'","")
     qs = urllib.parse.parse_qs(post_str)
     self._set_headers()
-    if qs['sms']:
+    if 'sms' in post_str:
       massage = msg_gen.message_request(qs['phone'],qs['sms'],qs['time'])
-    elif qs['lat']:
+    elif 'lat' in post_str:
       massage = msg_gen.gps_message_request(qs['phone'],
                                             qs['long'],
                                             qs['lat'],
-                                            qs['time'])
+                                            [str(datetime.now())])
     else:
       massage = UNKNOWN_REQ
     self.wfile.write(bytes(massage, "utf8"))
