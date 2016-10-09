@@ -17,8 +17,9 @@ ANSWER_VAL="answer_text"
 SMRT_KEY="smart_key"
 SMRT_KEY_TYPE="smart_key_type"
 SMRT_VAL_KEY="smart_value_key"
-
 SEPARATOR="  "
+
+LANG="LANGUAGE NOT DETECTED"
 
 class SurveyHandler:
   catagories = None
@@ -43,6 +44,7 @@ class SurveyHandler:
     self.catagories = {}
     onlyfolders = [f for f in listdir(self.input_fold) if isdir(join(self.input_fold, f))]
     for lang_folder in onlyfolders:
+      print("FOLDER ",lang_folder)
       lang_catagories={}
       f = open(join(join(self.input_fold, lang_folder),CATAGORIES_FILE),'r')
       csv_f = csv.reader(f)
@@ -106,6 +108,9 @@ class SurveyHandler:
 
   def next_q_from_catagory(self, catagory, person):
     question = None
+    if person.lang is None:
+      person.finished = True
+      return LANG
     try:
       curr_q = self.get_json(person.lang)[catagory][person.current_question]
       question = curr_q[QUESTION]
