@@ -112,7 +112,6 @@ class SurveyHandler:
   def next_q_from_catagory(self, person):
     question = None
     try:
-      debug_print("attempting {0} at {1}".format(person.current_question, person.current_catagory))
       curr_q = self.get_json(person.lang)[person.current_catagory][person.current_question]
       question = curr_q[QUESTION]
       for answer in curr_q[ANSWERS]:
@@ -120,7 +119,6 @@ class SurveyHandler:
                   answer[ANSWER_VAL]
     except IndexError as err:
       try:
-        debug_print("\n\nnow getting next catagory\n")
         # get the next catagory
         person.current_question = 0
         debug_print(person.catagories_matched)

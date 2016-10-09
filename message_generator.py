@@ -92,6 +92,6 @@ class MessageGenerator:
       return NON_REGISTERED_NUM
 
 def check_for(checkee, words):
-  regex = re.compile('|'.join(r'(?:|^)'+re.escape(x)+r'(?:|$)'
+  regex = re.compile('|'.join(r'(?:|^)'+re.escape(x.lower())+r'(?:|$)'
                       for x in words))
-  return re.search( regex, checkee)
+  return re.search(regex, checkee.lower())
