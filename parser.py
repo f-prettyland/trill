@@ -10,6 +10,7 @@ app = Flask(__name__)
 
 def incoming_sms_time():
     # Get the time of the message
+    # fallback using time and data of server request
     timeReceived = request.values.get('DateCreated', formatdate())
     return str(timeReceived)
 
@@ -27,25 +28,31 @@ def incoming_sms_body():
 
 @app.route("/", methods=['GET', 'POST'])
 
-#receive message functions
 
+#Post message data to Trill API
 def post_to_trill():
     timeReceived = incoming_sms_time()
     numFrom = incoming_sms_from()
     body = incoming_sms_body()
     params = urllib.parse.urlencode({'phone': numFrom, 'sms': body, 'time':timeReceived})
     headers = {"Content-type": "text/plain","Accept": "text/plain"}
-    conn = http.client.HTTPConnection("192.168.80.2",88)
+    conn = http.client.HTTPConnection("127.0.0.1",88)
     conn.request("POST", "", params, headers)
     response = conn.getresponse()
-    print(response)
+    data = response.read()
+    conn.close()
+    print(data)
+    return(data)
 
 
+
+
+# Debug Echo Function
 # def debug_echo():
 #     message = "message was sent at " + incoming_sms_time() + " from " + incoming_sms_from() + " with the content - " + "'" + incoming_sms_body() + "'"
 #     resp = twilio.twiml.Response()
-    # resp.message(message)
-    # return str(resp)
+#     resp.message(message)
+#     return str(resp)
 
 
 if __name__ == "__main__":
