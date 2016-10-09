@@ -1,7 +1,8 @@
 humanactivity.,virino,viro,homoj
 humanactivity.weaponsequipment.,pafilo,kuglo,konko
 humanactivity.weaponsequipment.trap.,masonodo,kaptilo
-animals.,leono,mortinta
+animals.,leono
+humanactivity.animals.carcass.,kadavro,mortinta
 features.figtree.,figo,frukto
 features.saltlick.,salo,sali
 features.waterhole.,akvo,truo

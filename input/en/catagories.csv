@@ -1,7 +1,8 @@
 humanactivity.,woman,man,people
 humanactivity.weaponsequipment.,gun,bullet,shell
 humanactivity.weaponsequipment.trap.,noose,switch,trap
-animals.,lion,dead
+animals.,lion
+humanactivity.animals.carcass.,carcass,corpse,dead
 features.figtree.,figs,fruit,nuts
 features.saltlick.,salt
 features.waterhole.,water,hole
