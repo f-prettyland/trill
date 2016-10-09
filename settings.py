@@ -4,6 +4,7 @@ from datetime import datetime
 
 CATAGORIES_FILE="catagories.csv"
 JAAAASON="temp.json"
+LOCATIONS="locations.csv"
 
 FILE_LOC = "out/"
 DEFAULT_LANG = "en"
