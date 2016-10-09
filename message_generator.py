@@ -65,6 +65,9 @@ class MessageGenerator:
       response = self.svr_handler.mark_get_next_question(self.people[phone_num],
                                                           None,
                                                           time)
+    if self.people[phone_num].finished:
+      del self.people[phone_num]
+
     return response
 
 def debug_print(string):
@@ -75,43 +78,3 @@ def check_for(checkee, words):
   regex = re.compile('|'.join(r'(?:|^)'+re.escape(x)+r'(?:|$)'
                       for x in words))
   return re.search( regex, checkee)
-
-# def main(results):
-#   global svr_handler
-#   input_loc = os.path.join(__location__,results.input_folder + "/" + \
-#                           results.lang + "/"+CATAGORIES)
-#   input_json_loc = os.path.join(__location__,results.input_folder + "/" + \
-#                           results.lang + "/"+JAAAASON)
-#
-#   data_file = open(input_json_loc)
-#   json_data = json.load(data_file)
-#   svr_handler = SurveyHandler(input_loc, json_data)
-#
-#   to_parse = ""
-#   if results.input:
-#     to_parse = results.input
-#   else:
-#     to_parse = input(ASK_FOR_IN)
-#
-#   p = make_person(to_parse,"0909090909")
-#   p.generateXML()
-#
-if __name__ == "__main__":
-  msg_gen = MessageGenerator()
-  print(msg_gen.message_request("909102", "hello"))
-#   prsr = argparse.ArgumentParser(description='Identify what someone\'s chatting about')
-#
-#   prsr.add_argument('-d', dest='input_folder',
-#                       help='File locaiton of word dictionaries')
-#   prsr.add_argument('-l', dest='lang',
-#                       help='Two letter language representation')
-#   prsr.add_argument('-i', dest='input',
-#                       help='A string to parse')
-#   # prsr.add_argument('-o', dest='output',
-#   #                     help='Where output xml goes to')
-#
-#   prsr.set_defaults(input_folder="input")
-#   prsr.set_defaults(lang="en")
-#   # prsr.set_defaults(output="out/test.xml")
-#   results = prsr.parse_args()
-#   main(results)

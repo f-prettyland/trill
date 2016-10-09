@@ -1,9 +1,11 @@
+import os.path
 from xml.dom.minidom import Document
 from xml.sax.saxutils import unescape
 WYPNT_ATTR = {
   'xmlns':"http://www.smartconservationsoftware.org/xml/1.0/independentincident",
   'id':"1"
 }
+FILE_TYPE = ".xml"
 
 class IncidentXMLWriter:
   way_node = None
@@ -71,5 +73,10 @@ class IncidentXMLWriter:
     print (self.doc.toprettyxml(indent="  "))
 
   def write_XML(self, out_file):
-    f = open(out_file, 'w')
+    file_name = out_file + FILE_TYPE
+    i = 1
+    while(os.path.isfile(file_name)):
+      file_name = out_file + "-" + str(i) + FILE_TYPE
+      i+=1
+    f = open(file_name, 'w')
     f.write(self.doc.toprettyxml(indent="  "))
