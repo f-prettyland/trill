@@ -4,7 +4,7 @@ import csv
 import json
 from os import listdir
 from os.path import isdir, join
-from settings import log_response,debug_print,CATAGORIES_FILE,JAAAASON,LOCATION,FINALE,QUESTION,ANSWERS,ANSWER_NUM,ANSWER_VAL,SMRT_KEY,SMRT_KEY_TYPE,SMRT_VAL_KEY,SEPARATOR
+from settings import log_response,LOC_NAMES,debug_print,CATAGORIES_FILE,JAAAASON,LOCATION,FINALE,QUESTION,ANSWERS,ANSWER_NUM,ANSWER_VAL,SMRT_KEY,SMRT_KEY_TYPE,SMRT_VAL_KEY,SEPARATOR
 
 class SurveyHandler:
   catagories = None
@@ -32,7 +32,7 @@ class SurveyHandler:
       return self.loc_data
     else:
       self.loc_data = {}
-      f = open(join(join(self.input_fold, lang),LOCATIONS),'r')
+      f = open(join(join(self.input_fold, lang),LOC_NAMES),'r')
       csv_f = csv.reader(f)
       for row in csv_f:
         for name in row[2:]:
@@ -90,7 +90,7 @@ class SurveyHandler:
       lat = latlong.sub(r"\3",sms)
     else:
       # ELSE LOOKUP LOCATIONS IN FILE FROM SMS, and get GPSs
-      for key_name in get_places(person.lang):
+      for key_name in self.get_places(person.lang):
         if key_name.lower() in sms.lower():
           (lon,lat) = self.loc_data[key_name]
     # if we found something, mark it
