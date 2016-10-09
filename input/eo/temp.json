@@ -2,7 +2,7 @@
   "start": [
     {
       "answers": [],
-      "question": "Kie vi estas? Cu vi pimpafono klaku ci tiu ligilo: https://0c2f58d4.ngrok.io/gps?phone={0}",
+      "question": "Kie vi estas? Cu vi pimpafono klaku ci tiu ligilo: https://2a26d70e.ngrok.io/gps?phone={0}",
       "smart_key": "",
       "smart_key_type": ""
     }
