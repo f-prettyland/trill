@@ -119,6 +119,9 @@ class SurveyHandler:
         # loggit and reask the question
         log_response(person.phonenumber, sms)
         reask_q = current_q[QUESTION]
+        for answer in current_q[ANSWERS]:
+          reask_q = reask_q + SEPARATOR + str(answer[ANSWER_NUM])+ ") " +\
+                    answer[ANSWER_VAL]
     return reask_q
 
   def mark_option_answer(self, sms, person, poss_answers,current_q):
