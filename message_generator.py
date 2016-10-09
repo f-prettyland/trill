@@ -24,7 +24,7 @@ class MessageGenerator:
 
   def get_initial_text_catagories(self, to_parse):
     id_catagories = []
-    inputted_lang = ""
+    inputted_lang = None
     for lang in self.svr_handler.catagories.keys():
       for catagory in self.svr_handler.catagories[lang].keys():
         if check_for(to_parse, self.svr_handler.catagories[lang][catagory]):
@@ -40,8 +40,11 @@ class MessageGenerator:
     incident_xml = IncidentXMLWriter(to_parse,
                               id_catagories,
                               time)
-    question_catagories = self.svr_handler.getQuestionCatagories(id_catagories,
+    if lang:
+      question_catagories = self.svr_handler.getQuestionCatagories(id_catagories,
                                                                 lang)
+    else:
+      question_catagories = []
     return Person(number, question_catagories, datetime.now(),
                   incident_xml, lang)
 
@@ -60,8 +63,8 @@ class MessageGenerator:
     else:
       self.people[phone_num] = self.make_person(phone_num, sms_body, time)
       response = self.svr_handler.mark_get_next_question(self.people[phone_num],
-                                                          None,
-                                                          time)
+                                                        None,
+                                                        time)
     if self.people[phone_num].finished:
       del self.people[phone_num]
 

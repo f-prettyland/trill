@@ -37,7 +37,7 @@ class S(BaseHTTPRequestHandler):
 def run(server_class=HTTPServer, handler_class=S, port=88):
   server_address = ('', port)
   httpd = server_class(server_address, handler_class)
-  print('Starting httpd...')
+  print('Listening for reports...')
   httpd.serve_forever()
 
 run()
