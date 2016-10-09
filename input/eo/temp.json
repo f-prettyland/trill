@@ -81,6 +81,67 @@
       "smart_key_type": "itemKey"
     }
   ],
+  "humanactivity.animals.carcass": [
+    {
+      "answers": [
+        {
+          "answer_number": 1,
+          "answer_text": "Malnova ago",
+          "smart_value_key": "natural.oldage"
+        },
+        {
+          "answer_number": 2,
+          "answer_text": "Veneno",
+          "smart_value_key": "illegal.poison"
+        },
+        {
+          "answer_number": 3,
+          "answer_text": "Pafilo",
+          "smart_value_key": "illegal.gunshot"
+        },
+        {
+          "answer_number": 4,
+          "answer_text": "Tradicia Armilo",
+          "smart_value_key": "illegal.traditionalweapons"
+        },
+        {
+          "answer_number": 5,
+          "answer_text": "Dronigis",
+          "smart_value_key": "natural.accident.drowned"
+        },
+        {
+          "answer_number": 6,
+          "answer_text": "Alia",
+          "smart_value_key": "other"
+        }
+      ],
+      "question": "Kiel de beston mortis?",
+      "smart_key": "humanactivity.carcas.causeofdeath",
+      "smart_key_type": "itemKey"
+    },
+    {
+      "answers": [
+        {
+          "answer_number": 1,
+          "answer_text": "Nigra Rinocero",
+          "smart_value_key": "dicerosbicornis_rl6557"
+        },
+        {
+          "answer_number": 2,
+          "answer_text": "Blanka Rinocero",
+          "smart_value_key": "ceratotheriumsimum_rl4185"
+        },
+        {
+          "answer_number": 3,
+          "answer_text": "Neniom",
+          "smart_value_key": "null"
+        }
+      ],
+      "question": "Kio beston estas mortis?",
+      "smart_key": "animals.liveanimals.species",
+      "smart_key_type": "itemKey"
+    }
+  ],
   "end": [
     {
       "answers": [],
