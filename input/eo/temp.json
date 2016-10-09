@@ -1,0 +1,84 @@
+{
+  "humanactivity.weaponsequipment.trap": [
+    {
+      "answers": [
+        {
+          "answer_number": 1,
+          "answer_text": "Kerna Kaptilo",
+          "smart_value_key": "pittrap"
+        },
+        {
+          "answer_number": 2,
+          "answer_text": "Ferdrata Kaptilo",
+          "smart_value_key": "wiresnare"
+        },
+        {
+          "answer_number": 3,
+          "answer_text": "Makzela Kaptilo",
+          "smart_value_key": "jawtrap"
+        },
+        {
+          "answer_number": 4,
+          "answer_text": "Alia",
+          "smart_value_key": "other"
+        }
+      ],
+      "question": "Kio tajpi de kaptilo?",
+      "smart_key": "humanactivity.weaponsequipment.trap.typeoftrap",
+      "smart_key_type": "itemKey"
+    },
+    {
+      "answers": [],
+      "question": "Kiom de kaptilo?",
+      "smart_key": "humanactivity.weaponsequipment.trap.numberofweaponsequipment",
+      "smart_key_type": "dValue"
+    },
+    {
+      "answers": [
+        {
+          "answer_number": 1,
+          "answer_text": "Jes",
+          "smart_value_key": "true"
+        },
+        {
+          "answer_number": 2,
+          "answer_text": "Ne",
+          "smart_value_key": "false"
+        }
+      ],
+      "question": "Estas kaptilo agema?",
+      "smart_key": "humanactivity.weaponsequipment.trap.isactive",
+      "smart_key_type": "bValue"
+    },
+    {
+      "answers": [
+        {
+          "answer_number": 1,
+          "answer_text": "Nigra Rinocero",
+          "smart_value_key": "dicerosbicornis_rl6557"
+        },
+        {
+          "answer_number": 2,
+          "answer_text": "Blanka Rinocero",
+          "smart_value_key": "ceratotheriumsimum_rl4185"
+        },
+        {
+          "answer_number": 3,
+          "answer_text": "Neniom",
+          "smart_value_key": "null"
+        }
+      ],
+      "question": "Kio beston estas limigita?",
+      "smart_key": "animals.liveanimals.species",
+      "smart_key_type": "itemKey"
+    }
+  ],
+  "end": [
+    {
+      "answers": [],
+      "question": "Dankon por kompletas",
+      "smart_key": "",
+      "smart_key_type": ""
+    }
+  ]
+}

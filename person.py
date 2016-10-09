@@ -6,11 +6,12 @@ class Person:
   current_catagory = None
   current_question = None
   last_time_of_contact = None
+  lang = None
   xml = None
   finished = False
 
   def __init__(self, phonenumber, catagories_matched,
-              date_time, xml):
+              date_time, xml, lang):
     self.phonenumber = phonenumber
     self.catagories_matched = catagories_matched
     if len(catagories_matched) >= 1 :
@@ -18,6 +19,7 @@ class Person:
     self.current_question = 0
     self.last_time_of_contact = date_time
     self.xml = xml
+    self.lang = lang
 
   def generateXML(self):
     finished = True
