@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <script>
+
+            function getLocation() {
+				// Get location no more than 10 minutes old. 600000 ms = 10 minutes.
+				navigator.geolocation.getCurrentPosition(showLocation, showError, {enableHighAccuracy:false,timeout:30000,maximumAge:600000});
+			}
+
+			function showError(error) {
+				alert(error.code + ' ' + error.message);
+			}
+
+			function showLocation(position) {
+				geoinfo.innerHTML='<p>Latitude: ' + position.coords.latitude + '</p>'
+				+ '<p>Longitude: ' + position.coords.longitude + '</p>'
+				+ '<p>Accuracy: ' + position.coords.accuracy + '</p>'
+				+ '<p>Altitude: ' + position.coords.altitude + '</p>'
+				+ '<p>Altitude accuracy: ' + position.coords.altitudeAccuracy + '</p>'
+				+ '<p>Speed: ' + position.coords.speed + '</p>'
+				+ '<p>Heading: ' + position.coords.heading + '</p>'
+				+ '<p>Timestamp: ' + position.timestamp + '</p>';
+
+                var http = new XMLHttpRequest();
+                var url = "gps/send";
+                var params = "phone=" + {{ phone }} + "&lat=" + position.coords.latitude + "&long=" + position.coords.longitude;
+                http.open("POST", url, true);
+
+                //Send the proper header information along with the request
+                http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                http.setRequestHeader("Content-length", params.length);
+                http.setRequestHeader("Connection", "close");
+
+                http.onreadystatechange = function() {//Call a function when the state changes.
+                    if(http.readyState == 4 && http.status == 200) {
+                        alert(http.responseText);
+                    }
+                }
+
+                http.send(params);
+			}
+
+			document.addEventListener("DOMContentLoaded", function(event) {
+                getLocation();
+            });
+
+        </script>
+    </head>
+
+    <body>
+		<div id="geoinfo"></div>
+    </body>
+</html>

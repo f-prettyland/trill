@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Waypoint xmlns="http://www.smartconservationsoftware.org/xml/1.0/independentincident" id="1" x="45.34" y="34.56" dateTime="2016-10-07T20:47:56.000-04:00">
+    <comment>Test sample</comment>
+    <observations categoryKey="humanactivity.weaponsequipment.trap.">
+        <attributes attributeKey="threat">
+            <itemKey>biologicalresourceuse.gatheringterrestrialplants.</itemKey>
+        </attributes>
+        <attributes attributeKey="numberofweaponsequipment">
+            <dValue>3.0</dValue>
+        </attributes>
+        <attributes attributeKey="typeoftrap">
+            <itemKey>wiresnare</itemKey>
+        </attributes>
+        <attributes attributeKey="isactive">
+            <bValue>true</bValue>
+        </attributes>
+    </observations>
+    <observations categoryKey="animals.liveanimals.">
+        <attributes attributeKey="threat">
+            <itemKey>none.</itemKey>
+        </attributes>
+        <attributes attributeKey="species">
+            <itemKey>chordata_rl.mammalia_rl.proboscidea_rl.elephantidae_rl.loxodonta_rl.</itemKey>
+        </attributes>
+        <attributes attributeKey="numberofadultmales">
+            <dValue>2.0</dValue>
+        </attributes>
+        <attributes attributeKey="numberofadultfemales">
+            <dValue>1.0</dValue>
+        </attributes>
+        <attributes attributeKey="numberofyoung">
+            <dValue>1.0</dValue>
+        </attributes>
+        <attributes attributeKey="numberofagesexunknown">
+            <dValue>2.0</dValue>
+        </attributes>
+        <attributes attributeKey="actiontakenliveanimals">
+            <itemKey>released</itemKey>
+        </attributes>
+    </observations>
+</Waypoint>
