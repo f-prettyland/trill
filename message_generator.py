@@ -8,10 +8,7 @@ from person import Person
 from datetime import datetime
 from xml_writer import IncidentXMLWriter
 from survey_handler import SurveyHandler
-
-__location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
-INPUT_FOLD="input"
-debug=True
+from settings import __location__, INPUT_FOLD, debug, log_response
 
 class MessageGenerator:
   svr_handler = None
@@ -69,6 +66,28 @@ class MessageGenerator:
       del self.people[phone_num]
 
     return response
+
+  def gps_message_request(self, phone_nums, longs, lats, times):
+    phone_num = phone_nums[0]
+    lon = longs[0]
+    lat = lats[0]
+    # trim off apos
+    reg_endline = re.compile(r'\'$')
+    time = reg_endline.sub("",times[0])
+    response = None
+    if phone_num in self.people.keys():
+      response = self.svr_handler.mark_gps_answer(self.people[phone_num],
+                                                  lon,
+                                                  lat,
+                                                  time)
+      if self.people[phone_num].finished:
+        del self.people[phone_num]
+
+      return response
+    else:
+      log_response(phone_nums, "Unknown id with x:{0} and y:{1}".format(lon,lat))
+      return NON_REGISTERED_NUM
+
 
 def debug_print(string):
   if debug:

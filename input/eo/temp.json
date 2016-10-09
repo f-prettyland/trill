@@ -1,4 +1,12 @@
 {
+  "start": [
+    {
+      "answers": [],
+      "question": "Kie vi estas?",
+      "smart_key": "",
+      "smart_key_type": ""
+    },
+  ],
   "humanactivity.weaponsequipment.trap": [
     {
       "answers": [

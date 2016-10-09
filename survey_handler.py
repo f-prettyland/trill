@@ -3,23 +3,7 @@ import csv
 import json
 from os import listdir
 from os.path import isdir, join
-
-CATAGORIES_FILE="catagories.csv"
-JAAAASON="temp.json"
-
-NONMATCH_RESP="out/log.csv"
-BEGIN="start"
-FINALE="end"
-QUESTION="question"
-ANSWERS="answers"
-ANSWER_NUM="answer_number"
-ANSWER_VAL="answer_text"
-SMRT_KEY="smart_key"
-SMRT_KEY_TYPE="smart_key_type"
-SMRT_VAL_KEY="smart_value_key"
-SEPARATOR="  "
-
-LANG="LANGUAGE NOT DETECTED"
+from settings import log_response,CATAGORIES_FILE,JAAAASON,BEGIN,FINALE,QUESTION,ANSWERS,ANSWER_NUM,ANSWER_VAL,SMRT_KEY,SMRT_KEY_TYPE,SMRT_VAL_KEY,SEPARATOR
 
 class SurveyHandler:
   catagories = None
@@ -63,6 +47,9 @@ class SurveyHandler:
     return matched_question_cats
 
   def mark_get_next_question(self, person, sms, time):
+    if person.current_catagory == LOCATION:
+      self.mark_location_answer(person, sms, time)
+
     if sms:
       person.last_time_of_contact=time
       poss_reask = self.mark_answer(sms, person)
@@ -72,6 +59,22 @@ class SurveyHandler:
       person.current_question+=1
     next_q = self.next_q_from_catagory(person.current_catagory, person)
     return next_q
+
+  def mark_gps_answer(self, person, lon, lat, time):
+    person.xml.set_location(lon, lat)
+    person.last_time_of_contact=time
+    person.current_question+=1
+    next_q = self.next_q_from_catagory(person.current_catagory, person)
+    return next_q
+
+  def mark_location_answer(self, person, sms, time):
+    # IF GPS
+    # FIND COORDS in message
+    lon = "11.609474842826888"
+    lat = "-0.3663339834505755"
+    # ELSE SOMEHOW LOOKUP LOCATIONS IN FILE FROM SMS, and get GPSs
+    mark_gps_answer(person, lon, lat, time)
+
 
   def mark_answer(self, sms, person):
     reask_q = None
@@ -108,9 +111,6 @@ class SurveyHandler:
 
   def next_q_from_catagory(self, catagory, person):
     question = None
-    if person.lang is None:
-      person.finished = True
-      return LANG
     try:
       curr_q = self.get_json(person.lang)[catagory][person.current_question]
       question = curr_q[QUESTION]
@@ -134,7 +134,3 @@ class SurveyHandler:
   def last_q(self, person):
     person.generateXML()
     return self.get_json(person.lang)[FINALE][0][QUESTION]
-
-def log_response(number, sms):
-  with open(NONMATCH_RESP, "a") as responses_file:
-    responses_file.write("{0}, {1}".format(number, sms))

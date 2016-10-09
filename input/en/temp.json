@@ -1,4 +1,12 @@
 {
+  "start": [
+    {
+      "answers": [],
+      "question": "Where are you? IF you have a smart phone click this link: http://wackaflockaflame.com/?{0}",
+      "smart_key": "",
+      "smart_key_type": ""
+    }
+  ],
   "humanactivity.animals.carcass": [
     {
       "answers": [

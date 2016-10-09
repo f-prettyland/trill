@@ -31,7 +31,7 @@ class S(BaseHTTPRequestHandler):
     qs = urllib.parse.parse_qs(post_str)
     self._set_headers()
     massage = msg_gen.message_request(qs['phone'],qs['sms'],qs['time'])
-    message = "\{\"body\":\""+ massage + "\"\}"
+    message = "{\"body\":\""+ massage + "\"}"
     self.wfile.write(bytes(message+"\n", "utf8"))
 
 def run(server_class=HTTPServer, handler_class=S, port=88):
