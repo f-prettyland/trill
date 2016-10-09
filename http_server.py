@@ -28,7 +28,6 @@ class S(BaseHTTPRequestHandler):
     content_length = int(self.headers['Content-Length'])
     post_data = self.rfile.read(content_length)
     post_str = str(post_data).replace("b\'","")
-    phone_and_sms = post_str.split("&")
     qs = urllib.parse.parse_qs(post_str)
     self._set_headers()
     massage = msg_gen.message_request(qs['phone'],qs['sms'],qs['time'])

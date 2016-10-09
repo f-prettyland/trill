@@ -40,8 +40,6 @@ class MessageGenerator:
     incident_xml = IncidentXMLWriter(to_parse,
                               id_catagories,
                               time)
-    incident_xml.print_XML()
-    print("LAAAANGUAGE  ", lang)
     question_catagories = self.svr_handler.getQuestionCatagories(id_catagories,
                                                                 lang)
     return Person(number, question_catagories, datetime.now(),
