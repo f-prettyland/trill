@@ -8,9 +8,12 @@ FINALE="end"
 QUESTION="question"
 ANSWERS="answers"
 ANSWER_NUM="answer_number"
+ANSWER_VAL="answer_text"
 SMRT_KEY="smart_key"
 SMRT_KEY_TYPE="smart_key_type"
 SMRT_VAL_KEY="smart_value_key"
+
+SEPARATOR="  "
 
 class SurveyHandler:
   catagories = None
@@ -85,7 +88,12 @@ class SurveyHandler:
   def next_q_from_catagory(self, catagory, person):
     question = None
     try:
-      question = self.json_data[catagory][person.current_question][QUESTION]
+      curr_q = self.json_data[catagory][person.current_question]
+      question = curr_q[QUESTION]
+      for answer in curr_q[ANSWERS]:
+        print(answer[ANSWER_VAL])
+        question = question + SEPARATOR + str(answer[ANSWER_NUM])+ ") " +\
+                  answer[ANSWER_VAL]
     except IndexError as err:
       try:
         # get the next catagory
