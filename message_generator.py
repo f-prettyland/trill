@@ -64,6 +64,7 @@ class MessageGenerator:
       response = self.svr_handler.mark_get_next_question(self.people[phone_num],
                                                         None,
                                                         time)
+      response = response.format(phone_num)
     if self.people[phone_num].finished:
       del self.people[phone_num]
 
