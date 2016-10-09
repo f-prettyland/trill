@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import re
 import csv
 import json
 from os import listdir
@@ -85,14 +86,14 @@ class SurveyHandler:
     # FIND COORDS in message
     latlong = re.compile(r".*?(\-?\d+(\.\d+)?),\s*(\-?\d+(\.\d+)?).*?")
     if latlong.match(sms):
-      lon = latlong.sub(r"\1",sms))
-      lat = latlong.sub(r"\3",sms))
+      lon = latlong.sub(r"\1",sms)
+      lat = latlong.sub(r"\3",sms)
     else:
       # ELSE LOOKUP LOCATIONS IN FILE FROM SMS, and get GPSs
       for key_name in get_places(person.lang):
         if key_name.lower() in sms.lower():
           (lon,lat) = self.loc_data[key_name]
-    # if we found something, mark it 
+    # if we found something, mark it
     if lon:
       self.mark_gps_answer(person, lon, lat, time)
     person.current_question+=1
