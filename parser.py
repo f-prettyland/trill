@@ -26,6 +26,7 @@ def incoming_sms_body():
     body = regexBody.sub("+",badBody)
     return str(body)
 
+
 @app.route("/", methods=['GET', 'POST'])
 
 
@@ -42,7 +43,16 @@ def post_to_trill():
     data = response.read()
     conn.close()
     print(data)
-    return(data)
+    # regexData = re.compile(r"^'b(.*})\\n")
+    cleanData = str(data).replace("\b'","")
+    print("sleeeeep")
+    #send_to_user(cleanData)
+    print(cleanData)
+    return(cleanData)
+
+
+
+
 
 
 
