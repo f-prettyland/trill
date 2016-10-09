@@ -63,8 +63,8 @@ class IncidentXMLWriter:
     return observation
 
   def set_location(self, x_loc, y_loc):
-    way_node.setAttribute("x", x_loc)
-    way_node.setAttribute("y", y_loc)
+    self.way_node.setAttribute("x", x_loc)
+    self.way_node.setAttribute("y", y_loc)
 
   def set_attribute(self, node, key, value):
     node.setAttribute(key, value)

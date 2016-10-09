@@ -30,9 +30,16 @@ class S(BaseHTTPRequestHandler):
     post_str = str(post_data).replace("b\'","")
     qs = urllib.parse.parse_qs(post_str)
     self._set_headers()
-    massage = msg_gen.message_request(qs['phone'],qs['sms'],qs['time'])
-    message = "{\"body\":\""+ massage + "\"}"
-    self.wfile.write(bytes(message+"\n", "utf8"))
+    if qs['sms']:
+      massage = msg_gen.message_request(qs['phone'],qs['sms'],qs['time'])
+    elif qs['lat']:
+      massage = msg_gen.gps_message_request(qs['phone'],
+                                            qs['long'],
+                                            qs['lat'],
+                                            qs['time'])
+    else:
+      massage = UNKNOWN_REQ
+    self.wfile.write(bytes(massage, "utf8"))
 
 def run(server_class=HTTPServer, handler_class=S, port=88):
   server_address = ('', port)

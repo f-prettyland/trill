@@ -3,7 +3,7 @@ import csv
 import json
 from os import listdir
 from os.path import isdir, join
-from settings import log_response,CATAGORIES_FILE,JAAAASON,BEGIN,FINALE,QUESTION,ANSWERS,ANSWER_NUM,ANSWER_VAL,SMRT_KEY,SMRT_KEY_TYPE,SMRT_VAL_KEY,SEPARATOR
+from settings import log_response,debug_print,CATAGORIES_FILE,JAAAASON,LOCATION,FINALE,QUESTION,ANSWERS,ANSWER_NUM,ANSWER_VAL,SMRT_KEY,SMRT_KEY_TYPE,SMRT_VAL_KEY,SEPARATOR
 
 class SurveyHandler:
   catagories = None
@@ -27,8 +27,9 @@ class SurveyHandler:
   def load_words(self):
     self.catagories = {}
     onlyfolders = [f for f in listdir(self.input_fold) if isdir(join(self.input_fold, f))]
+    debug_print("Language support for:")
     for lang_folder in onlyfolders:
-      print("FOLDER ",lang_folder)
+      debug_print("   "+lang_folder)
       lang_catagories={}
       f = open(join(join(self.input_fold, lang_folder),CATAGORIES_FILE),'r')
       csv_f = csv.reader(f)
@@ -47,24 +48,23 @@ class SurveyHandler:
     return matched_question_cats
 
   def mark_get_next_question(self, person, sms, time):
-    if person.current_catagory == LOCATION:
-      self.mark_location_answer(person, sms, time)
-
     if sms:
+      if person.current_catagory == LOCATION:
+        return self.mark_location_answer(person, sms, time)
       person.last_time_of_contact=time
       poss_reask = self.mark_answer(sms, person)
       if poss_reask:
         return poss_reask
       # next question
       person.current_question+=1
-    next_q = self.next_q_from_catagory(person.current_catagory, person)
+    next_q = self.next_q_from_catagory(person)
     return next_q
 
   def mark_gps_answer(self, person, lon, lat, time):
     person.xml.set_location(lon, lat)
     person.last_time_of_contact=time
     person.current_question+=1
-    next_q = self.next_q_from_catagory(person.current_catagory, person)
+    next_q = self.next_q_from_catagory(person)
     return next_q
 
   def mark_location_answer(self, person, sms, time):
@@ -73,7 +73,7 @@ class SurveyHandler:
     lon = "11.609474842826888"
     lat = "-0.3663339834505755"
     # ELSE SOMEHOW LOOKUP LOCATIONS IN FILE FROM SMS, and get GPSs
-    mark_gps_answer(person, lon, lat, time)
+    return self.mark_gps_answer(person, lon, lat, time)
 
 
   def mark_answer(self, sms, person):
@@ -109,21 +109,24 @@ class SurveyHandler:
     else:
       ValueError()
 
-  def next_q_from_catagory(self, catagory, person):
+  def next_q_from_catagory(self, person):
     question = None
     try:
-      curr_q = self.get_json(person.lang)[catagory][person.current_question]
+      debug_print("attempting {0} at {1}".format(person.current_question, person.current_catagory))
+      curr_q = self.get_json(person.lang)[person.current_catagory][person.current_question]
       question = curr_q[QUESTION]
       for answer in curr_q[ANSWERS]:
-        print(answer[ANSWER_VAL])
         question = question + SEPARATOR + str(answer[ANSWER_NUM])+ ") " +\
                   answer[ANSWER_VAL]
     except IndexError as err:
       try:
+        debug_print("\n\nnow getting next catagory\n")
         # get the next catagory
         person.current_question = 0
-        question = self.next_q_from_catagory(person.catagories_matched.pop(),
-                            person)
+        debug_print(person.catagories_matched)
+        person.current_catagory = person.catagories_matched.pop()
+        question = self.next_q_from_catagory(person)
+        debug_print(person.catagories_matched)
       except IndexError as err:
         question = self.last_q(person)
     except KeyError as err:

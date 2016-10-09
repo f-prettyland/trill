@@ -8,7 +8,7 @@ from person import Person
 from datetime import datetime
 from xml_writer import IncidentXMLWriter
 from survey_handler import SurveyHandler
-from settings import __location__, INPUT_FOLD, debug, log_response
+from settings import __location__,debug_print,INPUT_FOLD, debug, log_response
 
 class MessageGenerator:
   svr_handler = None
@@ -22,13 +22,15 @@ class MessageGenerator:
   def get_initial_text_catagories(self, to_parse):
     id_catagories = []
     inputted_lang = None
+    lang_count = {}
     for lang in self.svr_handler.catagories.keys():
+      lang_count[lang] = 0
       for catagory in self.svr_handler.catagories[lang].keys():
         if check_for(to_parse, self.svr_handler.catagories[lang][catagory]):
-          inputted_lang = lang
+          lang_count[lang] += 1
           id_catagories.append(catagory)
-
-    return (id_catagories, inputted_lang)
+    most_matching_lang = max(lang_count, key=lang_count.get)
+    return (id_catagories, most_matching_lang)
 
   def make_person(self, number, to_parse, time):
     (id_catagories, lang) = self.get_initial_text_catagories(to_parse)
@@ -68,6 +70,7 @@ class MessageGenerator:
     return response
 
   def gps_message_request(self, phone_nums, longs, lats, times):
+    debug_print("GPS_REQ")
     phone_num = phone_nums[0]
     lon = longs[0]
     lat = lats[0]
@@ -87,11 +90,6 @@ class MessageGenerator:
     else:
       log_response(phone_nums, "Unknown id with x:{0} and y:{1}".format(lon,lat))
       return NON_REGISTERED_NUM
-
-
-def debug_print(string):
-  if debug:
-    print(string)
 
 def check_for(checkee, words):
   regex = re.compile('|'.join(r'(?:|^)'+re.escape(x)+r'(?:|$)'
