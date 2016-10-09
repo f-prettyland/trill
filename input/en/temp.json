@@ -2,7 +2,7 @@
   "start": [
     {
       "answers": [],
-      "question": "Where are you? IF you have a smart phone click this link: http://wackaflockaflame.com/?{0}",
+      "question": "Where are you? IF you have a smart phone click this link: https://0c2f5ad4.ngrok.io/gps?phone={0}",
       "smart_key": "",
       "smart_key_type": ""
     }

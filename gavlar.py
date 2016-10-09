@@ -59,4 +59,4 @@ def gps_send():
 if __name__ == "__main__":
 
     # context = ('host.crt', 'host.key')
-    app.run(host='0.0.0.0', ssl_context='adhoc')
+    app.run(host='0.0.0.0', ssl_context='adhoc', port=6000)

