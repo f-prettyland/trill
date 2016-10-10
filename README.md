@@ -24,3 +24,6 @@ This is designed to work with a SMART instance to allow anyone to submit inciden
 
 ## Todo  
 [See TODO.md](./docs/TODO.md)
+
+## References  
+The `http_server` would not be possible without code shared from [bradmontgomery](https://gist.github.com/bradmontgomery/2219997)
