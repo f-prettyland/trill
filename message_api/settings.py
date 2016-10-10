@@ -6,7 +6,7 @@ CATAGORIES_FILE="catagories.csv"
 JAAAASON="temp.json"
 LOC_NAMES="locations.csv"
 
-FILE_LOC = "out/"
+FILE_LOC = "../out/"
 DEFAULT_LANG = "en"
 
 NONMATCH_RESP=FILE_LOC+"log.csv"
@@ -25,7 +25,7 @@ NON_REGISTERED_NUM="Your number is not registered"
 UNKNOWN_REQ="Unknown request"
 
 __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
-INPUT_FOLD="input"
+INPUT_FOLD="../input"
 debug=True
 
 def log_response(number, sms):

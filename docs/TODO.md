@@ -1,10 +1,10 @@
 # Tasks
 ## All  
-- [ ] Refactor
+- [X] Refactor
 
 ## API  
 - [ ] **REPLICATE that language mixing bug**
-		- The one where you send in eo and responded in en
+	- The one where you send in eo and responded in en
 - [ ] Database holding of state
 	- SQLAlchemy?
 - [ ] Make usable settings file

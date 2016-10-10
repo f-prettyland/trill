@@ -7,7 +7,7 @@ app=Flask(__name__)
 # https://127.0.0.1/read
 @app.route("/read", methods=['GET'])
 def read_records():
-    ods_data = get_data("input/en/sample.ods")
+    ods_data = get_data("../input/en/sample.ods")
     ret_data = {}
 
     for sheet in ods_data:
