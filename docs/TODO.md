@@ -6,12 +6,12 @@
 - [ ] **REPLICATE that language mixing bug**
 		- The one where you send in eo and responded in en
 - [ ] Database holding of state
-		- SQLAlchemy?
+	- SQLAlchemy?
 - [ ] Make usable settings file
 - [ ] Better logging
 - [ ] Covert `http_server`
-		- [ ] `flask`/`django`?
-		- [ ] Set up web debug interface
+	- [ ] `flask`/`django`?
+	- [ ] Set up web debug interface
 
 ## Twilio  
 - [ ] Hash number
