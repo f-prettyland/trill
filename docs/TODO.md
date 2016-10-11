@@ -13,6 +13,9 @@
 	- [ ] `flask`/`django`?
 	- [ ] Set up web debug interface
 
+## Logging
+- [ ] Make JSON logger that all programs can use
+
 ## Twilio  
 - [ ] Hash number
 	- We will also need to change API to have "`&hash=`" in post.
