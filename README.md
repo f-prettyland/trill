@@ -2,7 +2,7 @@
 A hackathon project from `#zoohackathon`
 
 
-This is designed to work with a SMART instance to allow anyone to submit incident reports to empower local people to help combat poaching and help with wildlife reporting, currently via SMS.
+This is designed to work with a [SMART instance](http://smartconservationtools.org/) to allow anyone to submit incident reports to empower local people to help combat poaching and help with wildlife reporting, currently via SMS.
 
 ### Example SMS  
 <img src="https://github.com/f-prettyland/trill/blob/master//examples/SMS-comms.jpeg" width="500">
