@@ -4,7 +4,19 @@ A hackathon project from `#zoohackathon`
 
 This is designed to work with a SMART instance to allow anyone to submit incident reports to empower local people to help combat poaching and help with wildlife reporting, currently via SMS.
 
-### Example SMS  
+## Features  
+- Automatic language detection and response
+- SMS parsing and responses
+- Geolocation
+  + Custom place names
+  + GPS parsing
+  + Geolocating url (for smart-phone users)
+- Custom slang word recognition
+- Microservice implementation
+  + Current SMS interaction
+  + Could include chat bot or form interface
+
+## Example SMS  
 <img src="https://github.com/f-prettyland/trill/blob/master//examples/SMS-comms.jpeg" width="500">
 
 ## How  
