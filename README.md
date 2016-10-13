@@ -2,7 +2,7 @@
 A hackathon project from `#zoohackathon`
 
 
-This is designed to work with a SMART instance to allow anyone to submit incident reports to empower local people to help combat poaching and help with wildlife reporting, currently via SMS.
+This is designed to work with a [SMART instance](http://smartconservationtools.org/) to allow anyone to submit incident reports to empower local people to help combat poaching and help with wildlife reporting, currently via SMS.
 
 ## Features  
 - Automatic language detection and response
@@ -36,3 +36,6 @@ This is designed to work with a SMART instance to allow anyone to submit inciden
 
 ## Todo  
 [See TODO.md](./docs/TODO.md)
+
+## References  
+The `http_server` would not be possible without code shared from [bradmontgomery](https://gist.github.com/bradmontgomery/2219997)
